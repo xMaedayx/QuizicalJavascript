@@ -68,14 +68,17 @@ body {
 }
 
 
-Time {
+.Time {
    font-family: Trebuchet;
    text-align: right; 
 }
 
 .HighScores { 
     font-family: Trebuchet;
-    text-align: left
+    text-align: left;
+    flex-wrap: wrap;
+    align-content: space-around;
+
 }
 
 header {
