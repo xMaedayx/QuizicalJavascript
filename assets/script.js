@@ -1,9 +1,6 @@
 var Time = document.querySelector("#Time")
 var startButton = document.querySelector("#start-button")
-var button1 = document.querySelector("#id1")
-var button2 = document.querySelector("#id2")
-var button3 = document.querySelector("#id3")
-var button4 = document.querySelector("#id4")
+var buttons = document.querySelector("#multipleChoice")
 var area = document.querySelector(".area-div");
 var questionEl = document.querySelector("#question")
 var quizBox = document.querySelector(".area")
@@ -21,6 +18,21 @@ function startgame() {
     displayQuestions()
 }
 
+function timer() {
+  var totalTime = 60;
+  var timeInterval = setInterval(function() {
+      if (totalTime >= 1) {
+       Time.textContent = totalTime + 'seconds'; 
+       totalTime --;
+      }
+      else { 
+          Time.textContent = 'NEXT'; 
+          clearInterval(timeInterval);
+          
+      }
+  }, 1000);
+}
+
 function setNextQuestion() {
     showQuestion(shuffleQuestions[currentQuestionIndex])
 }
@@ -28,6 +40,8 @@ function setNextQuestion() {
 function showQuestion(q) { 
     
 }
+
+
 
 function displayQuestions() { 
     button1.addEventListener("click", function() {
@@ -78,6 +92,8 @@ function displayQuestions() {
   } else {
     displayQuestions();
       }
+
+
 
 /* function rightAnswer(
 let answerTrue = questions[index].correctAnswer
