@@ -36,7 +36,7 @@ function displayQuestions() {
           setNextQuestion();
         } else {
           displayEl.innerText = "Incorrect!";
-          Time.innerText = Time.innerText - 10;
+          //Time.innerText = Time.innerText - 10;
         }
       });
       
@@ -46,7 +46,7 @@ function displayQuestions() {
           setNextQuestion();
         } else {
           displayEl.innerText = "Incorrect!";
-          Time.innerText = Time.innerText - 10;
+          //Time.innerText = Time.innerText - 10;
         }
       });
       
@@ -56,7 +56,7 @@ function displayQuestions() {
           setNextQuestion();
         } else {
           displayEl.innerText = "Incorrect!";
-          Time.innerText = Time.innerText - 10;
+          //Time.innerText = Time.innerText - 10;
         }
       });
       
@@ -66,11 +66,18 @@ function displayQuestions() {
           setNextQuestion();
         } else {
           displayEl.innerText = "Incorrect!";
-          Time.innerText = Time.innerText - 10;
+          //Time.innerText = Time.innerText - 10;
         }
       });
       }
 
+      function setNextQuestion() { 
+    currentQuestionIndex++;
+    if (currentQuestionIndex === shuffledQuestions.length) {
+   // set as the end where there is a prompt for initials. displayEl.innerText =
+  } else {
+    displayQuestions();
+      }
 
 /* function rightAnswer(
 let answerTrue = questions[index].correctAnswer
