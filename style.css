@@ -1,0 +1,102 @@
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+:root {
+    --hue-neutral1: 200; 
+    --hue-selected: 100;
+    
+
+}
+body { 
+    --hue: var(--hue-neutral);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 0; 
+    margin: 0; 
+    display: flex;
+    width: 100vw;
+    height: 100vh; 
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(var(--hue), 100%, 200%)
+
+}
+.area { 
+    width: 800px;
+    max-width: 80%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    
+}
+
+.btn-grid{ 
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 10px; 
+    margin: 20 px 0; 
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%,50%);
+    border-radius: 5px; 
+    padding: 5px 10px; 
+    color: #ffffff;
+    outline: none
+
+}
+
+.start-btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 10px
+
+}
+
+.controls {
+    display: flex;
+    justify-content: center; 
+    align-items: center
+}
+
+.hide{
+    display: none
+}
+
+
+Time {
+   font-family: Trebuchet;
+   text-align: right; 
+}
+
+.HighScores { 
+    font-family: Trebuchet;
+    text-align: left
+}
+
+header {
+    padding: 40px; 
+    text-align: center; 
+}
+
+nav {
+    display: flex
+}
+
+.button:hover { 
+    height: 40px; 
+    padding: 13px;
+    font-size: 18px;
+    cursor: pointer; 
+    border: none;
+    color: #545632;
+    border-radius: 7px;
+    background: #007fff
+}
+
+h1,
+h2

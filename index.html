@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="./assets/style.css" />
+<title>JavascriptQuiz</title>
+</head>
+
+
+<body> 
+    <header class="header">
+        <nav>
+            <ul>
+            <li>
+                <a href="#View-High-Scores" id= "HighScores"> View High Scores </a>
+            </li>
+            <li>
+                <a href="#Time" id="Time">Time</a>
+            </li>
+            </ul>
+        </nav>
+    </header>
+     
+    
+    <article class="startPage">
+        Try to answer the following questions in a minute. Your highest score will be kept. 
+     </article>
+
+     <button id ="start-button">
+        Start </button> 
+    <div class = "area hide">
+        <h1 id = "question">
+            <!---Javascript Q--> 
+        </h1> 
+        <div>
+            
+                
+                    <button id= "id1"> </button>
+                    <button id= "id2"> </button>
+                    <button id= "id3"> </button>
+                    <button id= "id4"> </button>
+                       
+                </div>          
+      
+       <footer id="display" >
+        <!----Insert right or wrong depending...--> 
+        </footer>
+
+    </div>
+    <div id="InputInitials"> 
+        <label for="input"></label>
+        <input type="initials" name="input" id="name" placeholder="highscoreName">
+    </div>
+    
+    <section id="score_section"> 
+        <div class="highscores">
+            <div class = "win-loss-counter">
+            <div>
+            <h2>Wins: <span class="win">0 </span> </h2>
+            <h2>Losses: <span class="lose">0</span></h2>
+          </div>
+    </section>
+
+
+        <script src="./assets/data.js"></script>
+        <script src="./assets/script.js"></script>
+
+        
+       
+
+</body>
+</html>
