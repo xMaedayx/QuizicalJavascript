@@ -11,52 +11,56 @@
 
 <body> 
     <header class="header">
-        <nav>
-            <ul>
-            <li>
+        <nav id="top-nav">
+                <div class="highscoresView">
                 <a href="#View-High-Scores" id= "HighScores"> View High Scores </a>
-            </li>
-            <li>
-                <a href="#Time" id="Time">Time</a>
-            </li>
-            </ul>
+                </div>
+
+                <div class="timeLink">
+                <a href="#Time" id="Time"></a>
+                </div>
+
         </nav>
     </header>
      
     
-    <article class="startPage">
-        Try to answer the following questions in a minute. Your highest score will be kept. 
+    <article id="startPage" class="hide">
+        <h3>Javascript Quiz</h3>
+        <p>Try to answer the following questions in a minute. Players highest score will be recorded. Keep in mind that this is timed. </p>
+
      </article>
 
      <button id ="start-button">
         Start </button> 
-    <div class = "area hide">
+    <div id="container" class="hide" >
+        <article id = "question-container" class= "hide">
+       
         <h1 id = "question">
             <!---Javascript Q--> 
         </h1> 
-        <div>
-            
-                
-                    <button id= "multipleChoice"> </button>
-                    <button id= "multipleChoice"> </button>
-                    <button id= "multipleChoice"> </button>
-                    <button id= "multipleChoice"> </button>
+                    <button id="op1" class= "multipleChoice"> </button>
+                    <button id="op2" class= "multipleChoice"> </button>
+                    <button id="op3" class= "multipleChoice"> </button>
+                    <button id="op4"class= "multipleChoice"> </button>
                        
-                </div>          
-      
-       <footer id="display" >
+    </article>      
+</div>  
+       
+    <footer id="display" >
         <!----Insert right or wrong depending...--> 
         </footer>
 
     </div>
-    <div id="InputInitials"> 
+
+
+    <div id="InputInitials hide" class="hide"> 
         <label for="input"></label>
-        <input type="initials" name="input" id="name" placeholder="highscoreName">
+        <input type="initials" name="input" id="name" placeholder="player">
     </div>
     
-    <section id="score_section"> 
+    <section class="score_section hide"> 
         <div class="highscores">
-            <div class = "win-loss-counter">
+            <div id = "win-loss-counter" class="hide">
             <div>
             <h2>Wins: <span class="win">0 </span> </h2>
             <h2>Losses: <span class="lose">0</span></h2>

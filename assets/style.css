@@ -4,13 +4,11 @@
 
 }
 :root {
-    --hue-neutral1: 200; 
-    --hue-selected: 100;
-    
-
+    --hue: rgb(134, 134, 239);
+    --btn-color: #e1addf;
 }
+
 body { 
-    --hue: var(--hue-neutral);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 0; 
     margin: 0; 
@@ -19,9 +17,9 @@ body {
     height: 100vh; 
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--hue), 100%, 200%)
-
+    background-color: var(--hue)
 }
+
 .area { 
     width: 800px;
     max-width: 80%;
@@ -40,9 +38,8 @@ body {
 }
 
 .btn {
-    --hue: var(--hue-neutral);
-    border: 1px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 100%,50%);
+    border: 1px solid var(--btn--color);
+    background-color: var(--btn-color);
     border-radius: 5px; 
     padding: 5px 10px; 
     color: #ffffff;
@@ -68,18 +65,20 @@ body {
 }
 
 
-.Time {
-   font-family: Trebuchet;
-   text-align: right; 
-}
+#top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .highscoresView {
+    margin-right: 1200px;
+  }
+  
+  .timeLink {
+    margin-left: 20px;
+  }
 
-.HighScores { 
-    font-family: Trebuchet;
-    text-align: left;
-    flex-wrap: wrap;
-    align-content: space-around;
-
-}
 
 header {
     padding: 40px; 
@@ -87,7 +86,9 @@ header {
 }
 
 nav {
-    display: flex
+    position: absolute;
+    top: 0; 
+    right: 0; 
 }
 
 .button:hover { 
@@ -101,5 +102,3 @@ nav {
     background: #007fff
 }
 
-h1,
-h2
