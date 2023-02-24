@@ -12,10 +12,13 @@ var displayEl = document.querySelector("#display")
 var startGuide = document.querySelector("#startPage")
 var initials = document.querySelector("#InputInitials")
 var scoreTally = document.querySelector("#win-loss-counter")
-var name = document.querySelector("#name")
+var player = document.querySelector("#name")
+var playerInitials = "";
 
 var shuffledQuestions, currentQuestionsIndex
 var totalTime = 60;
+var correctAnswer = 0; 
+
 
 startGuide.style.display = "block";
 startButton.addEventListener('click', () => {
@@ -29,12 +32,11 @@ function startgame() {
     shuffledQuestions = questions.sort(() => Math.random() -0.5);
     currentQuestionsIndex = 0;
     displayQuestions();
-    timer();
+   
 
 }
 
 
-function timer() {
   let timeInterval = setInterval(function() {
       if (totalTime >= 1) {
        Time.textContent = totalTime + 'seconds'; 
@@ -46,7 +48,7 @@ function timer() {
           
       }
   }, 1000);
-}
+
 
 
 function displayQuestions() {
@@ -59,10 +61,13 @@ function displayQuestions() {
       button.innerText = choices[i];
     }
   }
-    button1.addEventListener("click", function() {
+  let correctAnswers = []
+  button1.addEventListener("click", function() {
         if (button1.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
           displayEl.innerText = "Correct!";
           setNextQuestion();
+          correctAnswers.push(shuffledQuestions[currentQuestionsIndex].correctAnswer);
+
          
         } else {
           displayEl.innerText = "Incorrect!";
@@ -73,6 +78,7 @@ function displayQuestions() {
         if (button2.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
           displayEl.innerText = "Correct!";
           setNextQuestion();
+          correctAnswers.push(shuffledQuestions[currentQuestionsIndex].correctAnswer);
          
         } else {
           displayEl.innerText = "Incorrect!";
@@ -83,6 +89,7 @@ function displayQuestions() {
           if (button3.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
             displayEl.innerText = "Correct!";
             setNextQuestion();
+            correctAnswers.push(shuffledQuestions[currentQuestionsIndex].correctAnswer);
             
             
           } else {
@@ -94,6 +101,7 @@ function displayQuestions() {
           if (button4.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
             displayEl.innerText = "Correct!";
             setNextQuestion();
+            correctAnswers.push(shuffledQuestions[currentQuestionsIndex].correctAnswer);
             
           } else {
             displayEl.innerText = "Incorrect!";
@@ -114,10 +122,44 @@ function displayQuestions() {
         }
 
         function endQuiz() { 
-            const inputBox = document.getElementById('InputInitials');
+            playerInitials = document.querySelector("#name").value;
+            const inputBox = document.getElementById('InputInitials hide')
             inputBox.style.display = 'block';
+            questionEl.style.display = "none";
+            quizBox.style.display = "none";
+            clearInterval(timeInterval);
+            localStorage.setItem(player.value, correctAnswers.length);
         }
+
+        function inputPrompt() { 
+         player.classList.add('hide')
+         
+
+        }
+        function storeScore() {
+          player.addEventListener('click', () => {
+            startGuide.style.display = 'none';
+          });
+          scoreTally.textContent = `You got ${correctAnswers.length} out of ${shuffledQuestions.length} correct.`;
+
+    // display the correct answers
+      let correctAnswersList = "";
+    for (let i = 0; i < correctAnswers.length; i++) {
+        correctAnswersList += `<li>${correctAnswers[i]}</li>`;
+    }
+    displayEl.innerHTML = `<p>The correct answers were:</p><ul>${correctAnswersList}</ul>`;
+}
+
+          
+      
+
+
+       
+
+            
         
+        
+ 
       startButton.addEventListener("click", startgame);
       buttons.addEventListener("click", displayQuestions)
     
