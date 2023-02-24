@@ -1,10 +1,10 @@
 var Time = document.querySelector("#Time")
 var startButton = document.querySelector("#start-button")
 var buttons = document.querySelector(".multipleChoice")
-var button1 = document.querySelector("op1")
-var button2 = document.querySelector("op2")
-var button3 = document.querySelector("op3")
-var button4 = document.querySelector("op4")
+var button1 = document.querySelector("#op1")
+var button2 = document.querySelector("#op2")
+var button3 = document.querySelector("#op3")
+var button4 = document.querySelector("#op4")
 var questionEl = document.querySelector("#question")
 var quizBox = document.querySelector("#container")
 var questionBox = document.querySelector("#question-container")
@@ -12,20 +12,27 @@ var displayEl = document.querySelector("#display")
 var startGuide = document.querySelector("#startPage")
 var initials = document.querySelector("#InputInitials")
 var scoreTally = document.querySelector("#win-loss-counter")
+var name = document.querySelector("#name")
 
 var shuffledQuestions, currentQuestionsIndex
 var totalTime = 60;
 
-
+startGuide.style.display = "block";
+startButton.addEventListener('click', () => {
+  startGuide.style.display = 'none';
+});
 
 function startgame() {
-    startButton.classList.add('hide')
-    questionBox.classList.remove('hide')
-    shuffledQuestions = questions.sort(() => Math.random() -0.5)
-    currentQuestionsIndex = 0
-    displayQuestions()
-    timer()
+    startButton.classList.add('hide');
+    questionEl.style.display = "block";
+    quizBox.style.display = "block";
+    shuffledQuestions = questions.sort(() => Math.random() -0.5);
+    currentQuestionsIndex = 0;
+    displayQuestions();
+    timer();
+
 }
+
 
 function timer() {
   let timeInterval = setInterval(function() {
@@ -35,7 +42,7 @@ function timer() {
       }
       else { 
           clearInterval(timeInterval);
-        displayClose()  
+          endQuiz()  
           
       }
   }, 1000);
@@ -43,11 +50,12 @@ function timer() {
 
 
 function displayQuestions() {
+    questionBox.classList.remove('hide')
     questionEl.innerText = shuffledQuestions[currentQuestionsIndex].question;
     
     const choices = shuffledQuestions[currentQuestionsIndex].choices;
     for (let i = 0; i < choices.length; i++) {
-      const button = document.getElementById(`.op${i + 1}`);
+      const button = document.getElementById(`op${i + 1}`);
       button.innerText = choices[i];
     }
   }
@@ -55,6 +63,7 @@ function displayQuestions() {
         if (button1.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
           displayEl.innerText = "Correct!";
           setNextQuestion();
+         
         } else {
           displayEl.innerText = "Incorrect!";
           totalTime -= 10
@@ -64,6 +73,7 @@ function displayQuestions() {
         if (button2.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
           displayEl.innerText = "Correct!";
           setNextQuestion();
+         
         } else {
           displayEl.innerText = "Incorrect!";
           totalTime -= 10
@@ -73,6 +83,8 @@ function displayQuestions() {
           if (button3.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
             displayEl.innerText = "Correct!";
             setNextQuestion();
+            
+            
           } else {
             displayEl.innerText = "Incorrect!";
             totalTime -= 10
@@ -82,6 +94,7 @@ function displayQuestions() {
           if (button4.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
             displayEl.innerText = "Correct!";
             setNextQuestion();
+            
           } else {
             displayEl.innerText = "Incorrect!";
             totalTime -= 10
@@ -91,207 +104,20 @@ function displayQuestions() {
       
       
         function setNextQuestion()  { 
-          showQuestion(shuffledQuestions[currentQuestionsIndex])
+          currentQuestionsIndex++;
+          console.log(currentQuestionsIndex)
+          if (currentQuestionsIndex < shuffledQuestions.length) {
+                      displayQuestions(); }
+          else {
+            endQuiz();
+          }
         }
 
-        function showQuestion() { 
-          questionEl.innerText = questions.question;
+        function endQuiz() { 
+            const inputBox = document.getElementById('InputInitials');
+            inputBox.style.display = 'block';
         }
+        
       startButton.addEventListener("click", startgame);
       buttons.addEventListener("click", displayQuestions)
-     
-
-      
     
-      // window.location.redriect moving one page to another// 
-      // 
-
-
-/* function rightAnswer(
-let answerTrue = questions[index].correctAnswer
-
-}
-
-/* startButton.addEventListener("click", startgame);
-button1.addEventListener("click", displayQuestions);
-button2.addEventListener("click", displayQuestions);
-button3.addEventListener("click", displayQuestions);
-button4.addEventListener("click", displayQuestions);
-
-
-
-
-
-
-// event listener on each button clicked grab text of button 
-//check to see if its a right answer
-// timer 
-// increment value of currentquestion index 
-//
-
-
-
-
-
-
-
-
-
-/* if (choices.correct) {
-    button1.dataset.correct = choices.correctAnswer
-  }
-  button1.addEventListener('click', choices.correctAnswer)
-  button1.appendChild(button1)
-
-  if (choices.correct) {
-    button2.dataset.correct = choices.correctAnswer
-  }
-  button2.addEventListener('click', choices.correctAnswer)
-  button2.appendChild(button2)
-
-
-if (choices.correct) {
-    button3.dataset.correct = choices.correctAnswer
-  }
-  button3.addEventListener('click', choices.correctAnswer)
-  button3.appendChild(button3)
-    
-    
-if (choices.correct) {
-    button3.dataset.correct = choices.correctAnswer
-  }
-  button3.addEventListener('click', choices.correctAnswer)
-  button3.appendChild(button3)
-
-if (choices.correct) {
-    button4.dataset.correct = choices.correctAnswer
-  }
-  button4.addEventListener('click', choices.correctAnswer)
-  button4.appendChild(button4)
-
-
-
-
-
-
-
-
-
-
-
-
-/* var winCounter = 0;
-var lossCounter = 0; 
-
-
-
-
-function timer() {
-    var totalTime = 60;
-    var timeInterval = setInterval(function() {
-        if (totalTime >= 1) {
-         Time.textContent = totalTime + 'seconds'; 
-         totalTime --;
-        }
-        else { 
-            Time.textContent = 'NEXT'; 
-            clearInterval(timeInterval);
-            
-        }
-    }, 1000);
-}
-
-
-function displayQuestion (questionObj) {
-    console.log(questionObj)
-    questionEl.textContent = questionObj.question
-    for (i=0; i <= questionObj.choices.length; i++) {
-        var choiceEl = document.createElement("button")
-        choiceEl.textContent = questionObj.choices[i]
-        choiceEl.setAttribute("value", questionObj.choices[i])
-        multipleChoice.appendChild(choiceEl)
-
-    }
-
-   
-    
-}
-
-function RightAnswer (userInput) {
-    let answerTrue = questions[index].correctAnswer
-    displayEl.getElementsByClassName.visibility = "visible"
-    
-    
-}
-
-
-startButton.addEventListener("click", function() {
-    displayQuestion(questions[i]) 
-    timer()
-
-} )
-
-function enterInitials() { 
-   UserInputInitials.appendChild() 
-
-}
-
-function highscores() { 
-    if (correctAnswer === true){
-        winCounter++ 
-        localStorage.setItem("winCount", winCounter);
-     }
-     if (correctAnswer === false) {
-        lossCounter++
-        localStorage.setItem("winCount", winCounter)
-     } 
-} 
-
-
-
-
-
- button1.addEventListener("click", function() {
-    return rightAnswer(correctAnswer, currentQuestion);
-  });
-  button2.addEventListener("click", function() {
-    return rightAnswer(correctAnswer, currentQuestion);
-  });
-  button3.addEventListener("click", function() {
-    return rightAnswer(correctAnswer, currentQuestion);
-  });
-  button4.addEventListener("click", function() {
-    return rightAnswer(correctAnswer, currentQuestion);
-  });
-
-
-
-
-
-
-
-
-
-
- //logs window object
-console.log(window)
-
-//logs reference to the document in the window object 
-console.log(window.document)
-
-//logs root element 
- console.log(document.documentElement)
-
- // Returns head element of current document
- console.log(document.head)
-
- 
- questionEl.innerText = shuffledQuestions[currentQuestionsIndex].question
-button1.innerText = shuffledQuestions[currentQuestionsIndex].choices[0]
-button2.innerText = shuffledQuestions[currentQuestionsIndex].choices[1]
-button3.innerText = shuffledQuestions[currentQuestionsIndex].choices[2]
-button4.innerText = shuffledQuestions[currentQuestionsIndex].choices[3]
-
- 
- 
- */ 
