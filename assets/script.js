@@ -1,4 +1,4 @@
-var Time = document.querySelector("#Time")
+var Time = document.querySelector("#time")
 var startButton = document.querySelector("#start-button")
 var buttons = document.querySelector(".multipleChoice")
 var button1 = document.querySelector("#op1")
@@ -13,11 +13,15 @@ var startGuide = document.querySelector("#startPage")
 var initials = document.querySelector("#InputInitials")
 var scoreTally = document.querySelector("#win-loss-counter")
 var player = document.querySelector("#name")
+var scores = document.querySelector(".score")
+var scores = document.querySelector("#inputAnswer")
+var highEl = document.querySelector("#highscore")
 var playerInitials = "";
 
 var shuffledQuestions, currentQuestionsIndex
 var totalTime = 60;
 var correctAnswer = 0; 
+var highscores = []
 
 
 startGuide.style.display = "block";
@@ -151,7 +155,21 @@ function displayQuestions() {
 }
 
           
-      
+function renderHighScores() {
+  // Clear content
+ highEl.innerHTML = "";
+  show(highEl);
+  highEl = JSON.parse(localStorage.getItem("highscore"));
+  for (let i = 0; i < highscore.length; i++) {
+      let scoreItem = document.createElement("div");
+      scoreItem.className += "row mb-3 p-2";
+      console.log(scoreItem)
+      scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
+      scoreItem.textContent = `${(i + 1)}. ${highscore[i].username} - ${highscore[i].userScore}`;
+      scoresEl.appendChild(scoreItem);
+  }
+}
+
 
 
        

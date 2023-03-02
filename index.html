@@ -8,6 +8,10 @@
 <title>JavascriptQuiz</title>
 </head>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
 
 <body> 
     <header class="header">
@@ -15,10 +19,7 @@
                 <div class="highscoresView">
                 <a href="#View-High-Scores" id= "HighScores"> View High Scores </a>
                 </div>
-
-                <div class="timeLink">
-                <a href="#Time" id="Time"></a>
-                </div>
+                <div class="time">Time: <span id="timer">0</span></div>
 
         </nav>
     </header>
@@ -27,11 +28,11 @@
     <article id="startPage" class="hide">
         <h3>Javascript Quiz</h3>
         <p>Try to answer the following questions in a minute. Players highest score will be recorded. Keep in mind that this is timed. </p>
-
+        <button id ="start-button">
+            Start </button> 
      </article>
 
-     <button id ="start-button">
-        Start </button> 
+  
     <div id="container" class="hide" >
         <article id = "question-container" class= "hide">
        
@@ -53,17 +54,23 @@
     </div>
 
 
-    <div id="InputInitials hide" class="hide"> 
-        <label for="input"> Input initials to keep track of highscore.</label>
-        <input type="initials" name="input" id="name" class="hide" placeholder="player">
-    </div>
     
     <section class="score_section hide"> 
-        <div class="highscores">
-            <div id = "win-loss-counter" class="hide">
-            <div>
-            <h2>Wins: <span class="win">0 </span> </h2>
-            <h2>Losses: <span class="lose">0</span></h2>
+        <div class="highscores" id="highscore">
+            <h1 class="h1"> Finished!</h1>
+            <p class="exclamation"> Your final score: </p><span class="score"></span></p>
+            <label> Input initials to keep track of highscore. </label>
+            <input type="initials" name="input" id="name" class="hide" placeholder="player">
+            <button type="button" class="btn-primary" id="submit-initials"> enter </button>
+            </div>
+
+<section class="container" id="inputAnswer">
+    <h1 class="scoreList"> Highscores </h1>
+    <div class="score" >
+    </div>
+    <button type="button" class="btn-primary" id="goBack">Go Back</button>
+</section>
+           
           </div>
     </section>
 
