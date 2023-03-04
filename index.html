@@ -8,8 +8,8 @@
 <title>JavascriptQuiz</title>
 </head>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href=""
+        integrity=""> -->
 
 
 
@@ -34,7 +34,7 @@
 
   
     <div id="container" class="hide" >
-        <article id = "question-container" class= "hide">
+        <article id ="question-container" class= "hide">
        
         <h1 id = "question">
             <!---Javascript Q--> 
@@ -55,18 +55,18 @@
 
 
     
-    <section class="score_section hide"> 
-        <div class="highscores" id="highscore">
+    <section class="score_section"> 
+        <div class="hide" id="highscore">
             <h1 class="h1"> Finished!</h1>
             <p class="exclamation"> Your final score: </p><span class="score"></span></p>
-            <label> Input initials to keep track of highscore. </label>
+            <label id="inputInitials"> Input initials to keep track of highscore. </label>
             <input type="initials" name="input" id="name" class="hide" placeholder="player">
             <button type="button" class="btn-primary" id="submit-initials"> enter </button>
             </div>
 
 <section class="container" id="inputAnswer">
     <h1 class="scoreList"> Highscores </h1>
-    <div class="score" >
+    <div class="score">
     </div>
     <button type="button" class="btn-primary" id="goBack">Go Back</button>
 </section>

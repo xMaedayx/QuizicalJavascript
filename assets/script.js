@@ -1,29 +1,39 @@
-var Time = document.querySelector("#time")
+// buttons 
 var startButton = document.querySelector("#start-button")
 var buttons = document.querySelector(".multipleChoice")
 var button1 = document.querySelector("#op1")
 var button2 = document.querySelector("#op2")
 var button3 = document.querySelector("#op3")
 var button4 = document.querySelector("#op4")
+var submitInit = document.querySelcetor("#submit-initials")
+var backButton = document.querySelector("#goBack")
+//time elements
+var Time = document.querySelector("#time")
+// welcome page
+var startGuide = document.querySelector("#startPage")
+
+// question box 
 var questionEl = document.querySelector("#question")
 var quizBox = document.querySelector("#container")
 var questionBox = document.querySelector("#question-container")
+// footer (right or wrong)
 var displayEl = document.querySelector("#display")
-var startGuide = document.querySelector("#startPage")
-var initials = document.querySelector("#InputInitials")
-var scoreTally = document.querySelector("#win-loss-counter")
+// end of game view 
+var initials = document.querySelector("#inputInitials")
+var scoreTally = document.querySelector(".score")
 var player = document.querySelector("#name")
-var scores = document.querySelector(".score")
-var scores = document.querySelector("#inputAnswer")
 var highEl = document.querySelector("#highscore")
+// global variables to call within various local variables
 var playerInitials = "";
-
 var shuffledQuestions, currentQuestionsIndex
 var totalTime = 60;
 var correctAnswer = 0; 
 var highscores = []
 
 
+
+startButton.addEventListener("click", startgame);
+buttons.addEventListener("click", displayQuestions);
 startGuide.style.display = "block";
 startButton.addEventListener('click', () => {
   startGuide.style.display = 'none';
@@ -33,12 +43,11 @@ function startgame() {
     startButton.classList.add('hide');
     questionEl.style.display = "block";
     quizBox.style.display = "block";
-    shuffledQuestions = questions.sort(() => Math.random() -0.5);
+    shuffledQuestions = questions.sort(() => Math.random() -0.5); // shuffles questions array using Fisher-Yates shuffle algorithm
     currentQuestionsIndex = 0;
     displayQuestions();
-   
-
-}
+    
+   }
 
 
   let timeInterval = setInterval(function() {
@@ -59,7 +68,8 @@ function displayQuestions() {
     questionBox.classList.remove('hide')
     questionEl.innerText = shuffledQuestions[currentQuestionsIndex].question;
     
-    const choices = shuffledQuestions[currentQuestionsIndex].choices;
+    const choices = shuffledQuestions[currentQuestionsIndex].choices; // the questions randomized at the index.
+    // for-loop for randomizing the button multiple choice answers. 
     for (let i = 0; i < choices.length; i++) {
       const button = document.getElementById(`op${i + 1}`);
       button.innerText = choices[i];
@@ -67,7 +77,8 @@ function displayQuestions() {
   }
   let correctAnswers = []
   button1.addEventListener("click", function() {
-        if (button1.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
+       // At the randomized choices within the current questions index point, the correct answer is checked and stored into a new array for score keeping. 
+      if (button1.innerText === shuffledQuestions[currentQuestionsIndex].correctAnswer) {
           displayEl.innerText = "Correct!";
           setNextQuestion();
           correctAnswers.push(shuffledQuestions[currentQuestionsIndex].correctAnswer);
@@ -118,6 +129,7 @@ function displayQuestions() {
         function setNextQuestion()  { 
           currentQuestionsIndex++;
           console.log(currentQuestionsIndex)
+          // this if-statement allows the program to tell if all the questions in the object array have been displayed. 
           if (currentQuestionsIndex < shuffledQuestions.length) {
                       displayQuestions(); }
           else {
@@ -127,57 +139,48 @@ function displayQuestions() {
 
         function endQuiz() { 
             playerInitials = document.querySelector("#name").value;
-            const inputBox = document.getElementById('InputInitials hide')
+            const inputBox = document.getElementById('.score_section')
             inputBox.style.display = 'block';
             questionEl.style.display = "none";
             quizBox.style.display = "none";
             clearInterval(timeInterval);
-            localStorage.setItem(player.value, correctAnswers.length);
+            localStorage.setItem(playerInitals, correctAnswers.length);
+            renderHighScores()
         }
 
-        function inputPrompt() { 
-         player.classList.add('hide')
-         
-
-        }
-        function storeScore() {
-          player.addEventListener('click', () => {
+        // function inputPrompt() { 
+        //  player.classList.add('hide')
+        //  }
+        
+         function storeScore() {
+          let correctAnswersList = "";
+          for (let i = 0; i < correctAnswers.length; i++) {
+          correctAnswersList += `<li>${correctAnswers[i]}</li>`
+          submitInit.addEventListener('click', () => {
             startGuide.style.display = 'none';
-          });
-          scoreTally.textContent = `You got ${correctAnswers.length} out of ${shuffledQuestions.length} correct.`;
-
+            scoreTally.textContent = `You got ${correctAnswers.length} out of ${shuffledQuestions.length} correct.`;
+            });
+       
+          
     // display the correct answers
-      let correctAnswersList = "";
+    let correctAnswersList = "";
     for (let i = 0; i < correctAnswers.length; i++) {
         correctAnswersList += `<li>${correctAnswers[i]}</li>`;
     }
-    displayEl.innerHTML = `<p>The correct answers were:</p><ul>${correctAnswersList}</ul>`;
-}
+
 
           
 function renderHighScores() {
   // Clear content
  highEl.innerHTML = "";
   show(highEl);
-  highEl = JSON.parse(localStorage.getItem("highscore"));
+  highEl = JSON.parse(localStorage.getItem("#highscore"));
   for (let i = 0; i < highscore.length; i++) {
       let scoreItem = document.createElement("div");
-      scoreItem.className += "row mb-3 p-2";
+      scoreItem.className += "row1";
       console.log(scoreItem)
-      scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
+      scoreItem.setAttribute("style", "background-color:blue;");
       scoreItem.textContent = `${(i + 1)}. ${highscore[i].username} - ${highscore[i].userScore}`;
       scoresEl.appendChild(scoreItem);
   }
-}
 
-
-
-       
-
-            
-        
-        
- 
-      startButton.addEventListener("click", startgame);
-      buttons.addEventListener("click", displayQuestions)
-    
