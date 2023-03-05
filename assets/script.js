@@ -5,8 +5,8 @@ var button1 = document.querySelector("#op1")
 var button2 = document.querySelector("#op2")
 var button3 = document.querySelector("#op3")
 var button4 = document.querySelector("#op4")
-var submitInit = document.querySelcetor("#submit-initials")
 var backButton = document.querySelector("#goBack")
+var submitInit = document.querySelector("#submit-initials")
 //time elements
 var Time = document.querySelector("#time")
 // welcome page
@@ -23,6 +23,7 @@ var initials = document.querySelector("#inputInitials")
 var scoreTally = document.querySelector(".score")
 var player = document.querySelector("#name")
 var highEl = document.querySelector("#highscore")
+var scoreSection = document.querySelector("#inputAnswer")
 // global variables to call within various local variables
 var playerInitials = "";
 var shuffledQuestions, currentQuestionsIndex
@@ -35,6 +36,9 @@ var highscores = []
 startButton.addEventListener("click", startgame);
 buttons.addEventListener("click", displayQuestions);
 startGuide.style.display = "block";
+scoreSection.style.display = "none";
+
+
 startButton.addEventListener('click', () => {
   startGuide.style.display = 'none';
 });
@@ -50,7 +54,8 @@ function startgame() {
    }
 
 
-  let timeInterval = setInterval(function() {
+   let timeInterval = setInterval(function() {
+      
       if (totalTime >= 1) {
        Time.textContent = totalTime + 'seconds'; 
        totalTime --;
@@ -144,7 +149,7 @@ function displayQuestions() {
             questionEl.style.display = "none";
             quizBox.style.display = "none";
             clearInterval(timeInterval);
-            localStorage.setItem(playerInitals, correctAnswers.length);
+            localStorage.setItem(playerInitials, correctAnswers.length);
             renderHighScores()
         }
 
@@ -160,7 +165,8 @@ function displayQuestions() {
             startGuide.style.display = 'none';
             scoreTally.textContent = `You got ${correctAnswers.length} out of ${shuffledQuestions.length} correct.`;
             });
-       
+          }
+        }
           
     // display the correct answers
     let correctAnswersList = "";
@@ -178,9 +184,10 @@ function renderHighScores() {
   for (let i = 0; i < highscore.length; i++) {
       let scoreItem = document.createElement("div");
       scoreItem.className += "row1";
-      console.log(scoreItem)
+      // console.log(scoreItem)
       scoreItem.setAttribute("style", "background-color:blue;");
       scoreItem.textContent = `${(i + 1)}. ${highscore[i].username} - ${highscore[i].userScore}`;
       scoresEl.appendChild(scoreItem);
   }
-
+  storeScore();
+}
