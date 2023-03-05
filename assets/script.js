@@ -8,7 +8,7 @@ var button4 = document.querySelector("#op4")
 var backButton = document.querySelector("#goBack")
 var submitInit = document.querySelector("#submit-initials")
 //time elements
-var Time = document.querySelector("#time")
+var Time = document.querySelector("#timer")
 // welcome page
 var startGuide = document.querySelector("#startPage")
 
@@ -127,6 +127,7 @@ function displayQuestions() {
             displayEl.innerText = "Incorrect!";
             totalTime -= 10
           }
+          
        });
       
       
@@ -144,7 +145,7 @@ function displayQuestions() {
 
         function endQuiz() { 
             playerInitials = document.querySelector("#name").value;
-            const inputBox = document.getElementById('.score_section')
+            const inputBox = document.querySelector('.score_section')
             inputBox.style.display = 'block';
             questionEl.style.display = "none";
             quizBox.style.display = "none";
@@ -153,9 +154,9 @@ function displayQuestions() {
             renderHighScores()
         }
 
-        // function inputPrompt() { 
-        //  player.classList.add('hide')
-        //  }
+        function inputPrompt() { 
+         player.classList.add('hide')
+         }
         
          function storeScore() {
           let correctAnswersList = "";
@@ -168,26 +169,14 @@ function displayQuestions() {
           }
         }
           
-    // display the correct answers
+  
+function renderHighScores() {
+  highEl.classList.remove("hide");  
+  highEl = JSON.parse(localStorage.getItem("#highscore"));  // retrieves a value from local storage, converts it from a JSON string to a JavaScript object, and assigns it to the variable
+  for (let i = 0; i < highEl.length; i++) {
     let correctAnswersList = "";
     for (let i = 0; i < correctAnswers.length; i++) {
         correctAnswersList += `<li>${correctAnswers[i]}</li>`;
-    }
-
-
-          
-function renderHighScores() {
-  // Clear content
- highEl.innerHTML = "";
-  show(highEl);
-  highEl = JSON.parse(localStorage.getItem("#highscore"));
-  for (let i = 0; i < highscore.length; i++) {
-      let scoreItem = document.createElement("div");
-      scoreItem.className += "row1";
-      // console.log(scoreItem)
-      scoreItem.setAttribute("style", "background-color:blue;");
-      scoreItem.textContent = `${(i + 1)}. ${highscore[i].username} - ${highscore[i].userScore}`;
-      scoresEl.appendChild(scoreItem);
-  }
+      }
   storeScore();
-}
+} }
